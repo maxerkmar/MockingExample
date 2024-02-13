@@ -13,4 +13,18 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("");
         assertEquals(0,result);
     }
+
+    @Test
+    @DisplayName("Single number should return the number itself")
+    void singleNumberShouldReturnNumberItself(){
+        int result = StringCalculator.add("1");
+        assertEquals(1,result);
+    }
+
+    @Test
+    @DisplayName("Two numbers separated by comma should return their sum")
+    void twoNumbersSeparatedByCommaShouldReturnSum() {
+        int result = StringCalculator.add("2,3");
+        assertEquals(5, result);
+    }
 }
