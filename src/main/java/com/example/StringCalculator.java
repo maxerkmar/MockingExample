@@ -1,5 +1,9 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StringCalculator {
     public static int add(String numbers) {
         if(numbers.isEmpty()) return 0;
@@ -11,7 +15,17 @@ public class StringCalculator {
         }
         String[] numArr = numbers.split(delimiter);
         int sum = 0;
-        for (String num : numArr) sum += Integer.parseInt(num);
+        List<Integer> negatives = new ArrayList<>();
+        for (String num : numArr){
+            int n = Integer.parseInt(num);
+            if (n<0) negatives.add(n);
+            sum += n;
+        }
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("negatives not allowed: " + negatives.stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", ")));
+        }
         return sum;
     }
 }
