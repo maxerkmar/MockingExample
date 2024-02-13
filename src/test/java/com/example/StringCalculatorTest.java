@@ -67,4 +67,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("5,1001,5,1002");
         assertEquals(10, result);
     }
+
+    @Test
+    @DisplayName("Support delimiters of any length")
+    void supportDelimitersOfAnyLength() {
+        int result = StringCalculator.add("//[***]\n1***2***3");
+        assertEquals(6, result);
+    }
 }

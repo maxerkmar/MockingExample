@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
@@ -9,9 +11,14 @@ public class StringCalculator {
         if(numbers.isEmpty()) return 0;
         String delimiter = "[,\n]";
         if (numbers.startsWith("//")) {
-            int delimiterIndex = numbers.indexOf("\n");
-            delimiter = numbers.substring(2, delimiterIndex);
-            numbers = numbers.substring(delimiterIndex + 1);
+            Matcher matcher = Pattern.compile("//\\[(.*?)]\n?(.*)").matcher(numbers);
+            if (matcher.find()) {
+                delimiter = Pattern.quote(matcher.group(1));
+                numbers = matcher.group(2);
+            } else {
+                delimiter = Pattern.quote(numbers.substring(2, 3));
+                numbers = numbers.substring(4);
+            }
         }
         String[] numArr = numbers.split(delimiter);
         int sum = 0;
