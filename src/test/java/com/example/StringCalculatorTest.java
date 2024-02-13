@@ -56,7 +56,7 @@ public class StringCalculatorTest {
             StringCalculator.add("1,-2,3,-4");
         });
 
-        String expectedMessage = "negatives not allowed: -2, -4";
+        String expectedMessage = "negatives not allowed: [-2, -4]";
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -72,6 +72,19 @@ public class StringCalculatorTest {
     @DisplayName("Support delimiters of any length")
     void supportDelimitersOfAnyLength() {
         int result = StringCalculator.add("//[***]\n1***2***3");
+        assertEquals(6, result);
+    }
+
+    @Test
+    @DisplayName("Allow multiple delimiters")
+    void allowMultipleDelimiters() {
+        int result = StringCalculator.add("//[*][%]\n1*2%3");
+        assertEquals(6, result);
+    }
+    @Test
+    @DisplayName("Allow multiple delimiters with length longer than one character")
+    void allowMultipleDelimitersWithLengthLongerThanOneCharacter() {
+        int result = StringCalculator.add("//[***][%%%]\n1***2%%%3");
         assertEquals(6, result);
     }
 }
