@@ -60,4 +60,11 @@ public class StringCalculatorTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    @DisplayName("Ignore numbers larger than 1000")
+    void ignoreNumbersLargerThan1000() {
+        int result = StringCalculator.add("5,1001,5,1002");
+        assertEquals(10, result);
+    }
 }

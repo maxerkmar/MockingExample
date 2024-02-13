@@ -19,7 +19,7 @@ public class StringCalculator {
         for (String num : numArr){
             int n = Integer.parseInt(num);
             if (n<0) negatives.add(n);
-            sum += n;
+            else if (n <= 1000) sum += n;
         }
         if (!negatives.isEmpty()) {
             throw new IllegalArgumentException("negatives not allowed: " + negatives.stream()
