@@ -27,4 +27,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("2,3");
         assertEquals(5, result);
     }
+
+    @Test
+    @DisplayName("Handle unknown amount of numbers separated by comma")
+    void handleUnknownAmountOfNumbersSeparatedByComma() {
+        int result = StringCalculator.add("1,2,3,4,5");
+        assertEquals(15, result);
+    }
 }
