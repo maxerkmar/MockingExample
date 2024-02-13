@@ -41,4 +41,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("1\n2,3");
         assertEquals(6, result);
     }
+
+    @Test
+    @DisplayName("Support different delimiters")
+    void supportDifferentDelimiters() {
+        int result = StringCalculator.add("//;\n1;2");
+        assertEquals(3, result);
+    }
 }
